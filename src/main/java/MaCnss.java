@@ -1,4 +1,5 @@
 import db.AdminService;
+import db.AgentService;
 import dialog.Prompt;
 import org.macnss.Admin;
 import org.macnss.Person;
@@ -17,6 +18,17 @@ public class MaCnss {
     public MaCnss(String role, Person person) {
         this.role = role;
         this.person = person;
+    }
+
+    public void addAgent(){
+        HashMap<String,String> agent = Prompt.promptForPerson();
+        boolean added = AgentService.insertAgent(agent.get("username"),agent.get("email"),agent.get("password"));
+        if (added) {
+            System.out.println("Agent added successfully!");
+            return;
+        }
+
+        System.out.println("Ops something went wrong while adding agent!");
     }
 
     public Admin adminLogin() {

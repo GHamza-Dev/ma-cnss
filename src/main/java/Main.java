@@ -44,14 +44,14 @@ public class Main {
         }while (choice != '0');
 
         if (maCnss.getRole().equals("admin")) {
-            adminBoard();
+            adminBoard(maCnss);
         } else if (true) {
             System.out.println("another board");
         }
 
     }
 
-    public static void adminBoard(){
+    public static void adminBoard(MaCnss maCnss){
         char choice = '+';
         Menu adminMenu = new Menu("ADMIN MENU");
         adminMenu.addChoice("create new agent");
@@ -62,7 +62,7 @@ public class Main {
                     System.out.println("GOOD BYE!");
                 }break;
                 case '1':{
-                    System.out.println("adding agent...");
+                    maCnss.addAgent();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");
