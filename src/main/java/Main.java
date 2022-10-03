@@ -1,6 +1,7 @@
 import db.AdminService;
 import menu.Menu;
 import org.macnss.Admin;
+import org.macnss.Agent;
 
 import java.util.Scanner;
 
@@ -32,7 +33,13 @@ public class Main {
                     choice = '0';
                 }break;
                 case '2':{
+                    System.out.println("Agent login.....");
                     maCnss.setRole("agent");
+                    Agent agent = maCnss.agentLogin();
+                    if (agent == null) {
+                        return;
+                    }
+                    maCnss.setPerson(agent);
                     choice = '0';
                 }break;
                 case '3':{

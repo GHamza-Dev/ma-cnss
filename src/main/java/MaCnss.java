@@ -72,6 +72,30 @@ public class MaCnss {
 
     }
 
+    public Agent agentLogin() {
+        int attempts = 0;
+
+        while (true) {
+
+            if (attempts > 6) {
+                System.out.println("You reached the...");
+                return null;
+            }
+
+            HashMap<String, String> credentials = Prompt.promptForCredentials();
+            Agent agent = AgentService.login(credentials.get("email"), credentials.get("password"));
+
+            if (agent != null) {
+                return agent;
+            }
+
+            System.out.println("Username or password does not match!");
+
+            attempts++;
+        }
+
+    }
+
     public void setRole(String role) {
         this.role = role;
     }
