@@ -3,6 +3,7 @@ import db.AgentService;
 import db.PatientService;
 import dialog.Prompt;
 import org.macnss.Admin;
+import org.macnss.Agent;
 import org.macnss.Patient;
 import org.macnss.Person;
 
@@ -93,6 +94,35 @@ public class MaCnss {
 
             attempts++;
         }
+
+    }
+
+    public Patient patientLogin() {
+        int attempts = 0;
+
+        while (true) {
+
+            if (attempts > 6) {
+                System.out.println("You reached the...");
+                return null;
+            }
+
+            HashMap<String, String> credentials = Prompt.promptForCredentialsPatient();
+            Patient patient = PatientService.login(Integer.valueOf(credentials.get("mat")), credentials.get("password"));
+
+            if (patient != null) {
+                return patient;
+            }
+
+            System.out.println("Username or password does not match!");
+
+            attempts++;
+        }
+
+    }
+
+    public void patientCheckHistory(){
+        System.out.println(this.person);
 
     }
 
