@@ -1,6 +1,8 @@
 import db.AdminService;
+import db.AgentService;
 import dialog.Prompt;
 import org.macnss.Admin;
+import org.macnss.Agent;
 import org.macnss.Person;
 
 import java.util.HashMap;
@@ -34,6 +36,30 @@ public class MaCnss {
 
             if (admin != null) {
                 return admin;
+            }
+
+            System.out.println("Username or password does not match!");
+
+            attempts++;
+        }
+
+    }
+
+    public Agent agentLogin() {
+        int attempts = 0;
+
+        while (true) {
+
+            if (attempts > 6) {
+                System.out.println("You reached the...");
+                return null;
+            }
+
+            HashMap<String, String> credentials = Prompt.promptForCredentials();
+            Agent agent = AgentService.login(credentials.get("email"), credentials.get("password"));
+
+            if (agent != null) {
+                return agent;
             }
 
             System.out.println("Username or password does not match!");
