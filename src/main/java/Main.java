@@ -32,7 +32,8 @@ public class Main {
                     choice = '0';
                 }break;
                 case '2':{
-                    System.out.println("Agent login.....");
+                    maCnss.setRole("agent");
+                    choice = '0';
                 }break;
                 case '3':{
                     System.out.println("Patient login.....");
@@ -45,10 +46,35 @@ public class Main {
 
         if (maCnss.getRole().equals("admin")) {
             adminBoard(maCnss);
-        } else if (true) {
-            System.out.println("another board");
+        } else if (maCnss.getRole().equals("agent")) {
+            agentBoard(maCnss);
+        }else if (maCnss.getRole().equals("patient")){
+            System.out.printf("\nPatient board......");
+        }else {
+            System.out.println("No board found!");
         }
 
+    }
+
+    public static void agentBoard(MaCnss maCnss){
+        char choice = '+';
+        Menu agentMenu = new Menu("AGENT MENU");
+        agentMenu.addChoice("add patient");
+
+        do {
+            choice = agentMenu.promptChoice(scanner);
+            switch (choice){
+                case '0':{
+                    System.out.println("GOOD BYE!");
+                }break;
+                case '1':{
+                    maCnss.addPatient();
+                }break;
+                default:{
+                    System.out.println("It seems like you are tired ;)");
+                }
+            }
+        }while (choice != '0');
     }
 
     public static void adminBoard(MaCnss maCnss){
