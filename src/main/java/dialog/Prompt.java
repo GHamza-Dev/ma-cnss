@@ -17,4 +17,17 @@ public class Prompt {
 
         return credentials;
     }
+
+    public static HashMap<String,String> promptForPerson(){
+        HashMap<String,String> person = new HashMap<>();
+
+        System.out.print("Username: ");
+        person.put("username",scanner.nextLine());
+        System.out.print("Email: ");
+        person.put("email",scanner.nextLine());
+        System.out.print("Password: ");
+        person.put("password",scanner.nextLine());
+
+        return person;
+    }
 }

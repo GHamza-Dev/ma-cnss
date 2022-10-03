@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBService {
-    private static final DBConnection dbConnection = new DBConnection();
+    protected static final DBConnection dbConnection = new DBConnection();
     protected static Statement stmt;
 
     public static Statement getStatement() {
