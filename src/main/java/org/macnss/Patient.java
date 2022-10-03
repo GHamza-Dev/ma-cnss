@@ -19,4 +19,12 @@ public class Patient extends Person{
     public void setMat(int mat) {
         this.mat = mat;
     }
+
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "mat=" + mat +
+                '}';
+    }
 }
