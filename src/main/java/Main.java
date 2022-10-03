@@ -52,16 +52,39 @@ public class Main {
         }while (choice != '0');
 
         if (maCnss.getRole().equals("admin")) {
-            adminBoard();
+            adminBoard(maCnss);
         } else if (maCnss.getRole().equals("agent")) {
-            
-        } else if (true) {
-            System.out.println("another board");
+            agentBoard(maCnss);
+        }else if (maCnss.getRole().equals("patient")){
+            System.out.printf("\nPatient board......");
+        }else {
+            System.out.println("No board found!");
         }
 
     }
 
-    public static void adminBoard(){
+    public static void agentBoard(MaCnss maCnss){
+        char choice = '+';
+        Menu agentMenu = new Menu("AGENT MENU");
+        agentMenu.addChoice("add patient");
+
+        do {
+            choice = agentMenu.promptChoice(scanner);
+            switch (choice){
+                case '0':{
+                    System.out.println("GOOD BYE!");
+                }break;
+                case '1':{
+                    maCnss.addPatient();
+                }break;
+                default:{
+                    System.out.println("It seems like you are tired ;)");
+                }
+            }
+        }while (choice != '0');
+    }
+
+    public static void adminBoard(MaCnss maCnss){
         char choice = '+';
         Menu adminMenu = new Menu("ADMIN MENU");
         adminMenu.addChoice("create new agent");
@@ -72,7 +95,7 @@ public class Main {
                     System.out.println("GOOD BYE!");
                 }break;
                 case '1':{
-                    System.out.println("adding agent...");
+                    maCnss.addAgent();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");

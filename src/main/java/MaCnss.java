@@ -1,8 +1,9 @@
 import db.AdminService;
 import db.AgentService;
+import db.PatientService;
 import dialog.Prompt;
 import org.macnss.Admin;
-import org.macnss.Agent;
+import org.macnss.Patient;
 import org.macnss.Person;
 
 import java.util.HashMap;
@@ -19,6 +20,32 @@ public class MaCnss {
     public MaCnss(String role, Person person) {
         this.role = role;
         this.person = person;
+    }
+
+    public void addAgent(){
+        HashMap<String,String> agent = Prompt.promptForPerson();
+        boolean added = AgentService.insertAgent(agent.get("username"),agent.get("email"),agent.get("password"));
+        if (added) {
+            System.out.println("Agent added successfully!");
+            return;
+        }
+
+        System.out.println("Ops something went wrong while adding agent!");
+    }
+
+    public void addPatient(){
+        HashMap<String,String> p = Prompt.promptForPerson();
+        long mat = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+        Patient patient = new Patient(p.get("username"),p.get("email"),p.get("password"),mat);
+
+        boolean added = PatientService.insertAgent(patient);
+
+        if (added) {
+            System.out.println("Patient added successfully!");
+            return;
+        }
+
+        System.out.println("Ops something went wrong while adding patient!");
     }
 
     public Admin adminLogin() {
