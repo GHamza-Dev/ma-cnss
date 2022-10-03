@@ -3,7 +3,7 @@ package dialog;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Dialog {
+public class Prompt {
 
     private static final Scanner scanner = new Scanner(System.in);
 
