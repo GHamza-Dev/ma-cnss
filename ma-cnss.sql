@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 11:56 AM
+-- Generation Time: Oct 03, 2022 at 02:52 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `email` varchar(200) NOT NULL,
-  `password` varchar(200) NOT NULL
+                         `id` int(11) NOT NULL,
+                         `username` varchar(30) NOT NULL,
+                         `email` varchar(200) NOT NULL,
+                         `password` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -39,7 +39,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
-(1, 'ibrahim_ben', 'ibrahim@admin.com', '1234');
+                                                                (1, 'ibrahim_ben', 'ibrahim@admin.com', '1234'),
+                                                                (2, '', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -48,10 +49,33 @@ INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
 --
 
 CREATE TABLE `agent` (
-  `id` int(30) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+                         `id` int(30) NOT NULL,
+                         `username` varchar(100) NOT NULL,
+                         `email` varchar(100) NOT NULL,
+                         `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `agent`
+--
+
+INSERT INTO `agent` (`id`, `username`, `email`, `password`) VALUES
+                                                                (1, 'hamza', 'hamza@agent.com', '1234'),
+                                                                (3, 'iman', 'ima@agent.com', '1234'),
+                                                                (4, 'walter', 'walter@agent.com', 'walter');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient`
+--
+
+CREATE TABLE `patient` (
+                           `id` int(30) NOT NULL,
+                           `mat` int(100) NOT NULL,
+                           `username` varchar(30) NOT NULL,
+                           `email` varchar(30) DEFAULT NULL,
+                           `password` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -62,13 +86,19 @@ CREATE TABLE `agent` (
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `agent`
 --
 ALTER TABLE `agent`
-  ADD PRIMARY KEY (`id`);
+    ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `patient`
+--
+ALTER TABLE `patient`
+    ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -78,13 +108,19 @@ ALTER TABLE `agent`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `agent`
 --
 ALTER TABLE `agent`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `patient`
+--
+ALTER TABLE `patient`
+    MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
