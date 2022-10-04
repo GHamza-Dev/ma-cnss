@@ -18,6 +18,17 @@ public class Prompt {
         return credentials;
     }
 
+    public static HashMap<String ,String> promptForCredentialsPatient(){
+        HashMap<String,String> credentials = new HashMap<>();
+
+        System.out.print("Enter your registration number: ");
+        credentials.put("mat",String.valueOf(scanner.nextInt()));
+        System.out.print("Enter your password: ");
+        credentials.put("password",scanner.next());
+
+        return credentials;
+    }
+
     public static HashMap<String,String> promptForPerson(){
         HashMap<String,String> person = new HashMap<>();
 

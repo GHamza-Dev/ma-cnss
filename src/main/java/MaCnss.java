@@ -2,12 +2,13 @@ import db.AdminService;
 import db.AgentService;
 import db.PatientService;
 import dialog.Prompt;
-import org.macnss.Admin;
-import org.macnss.Patient;
-import org.macnss.Person;
+import org.macnss.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import static db.PatientService.getHistory;
 
 public class MaCnss {
     private String role;
@@ -93,6 +94,39 @@ public class MaCnss {
 
             attempts++;
         }
+
+    }
+
+    public Patient patientLogin() {
+        int attempts = 0;
+
+        while (true) {
+
+            if (attempts > 6) {
+                System.out.println("You reached the...");
+                return null;
+            }
+
+            HashMap<String, String> credentials = Prompt.promptForCredentialsPatient();
+            Patient patient = PatientService.login(Integer.valueOf(credentials.get("mat")), credentials.get("password"));
+
+            if (patient != null) {
+                return patient;
+            }
+
+            System.out.println("Username or password does not match!");
+
+            attempts++;
+        }
+
+    }
+
+    public void patientCheckHistory(){
+        ArrayList<Dossier> dossier = getHistory(this.person.getId());
+        if(dossier != null){
+            System.out.println(dossier);
+        }
+
 
     }
 

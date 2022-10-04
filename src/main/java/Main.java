@@ -2,6 +2,7 @@ import db.AdminService;
 import menu.Menu;
 import org.macnss.Admin;
 import org.macnss.Agent;
+import org.macnss.Patient;
 
 import java.util.Scanner;
 
@@ -22,7 +23,8 @@ public class Main {
             switch (choice){
                 case '0':{
                     System.out.println("GOOD BYE!");
-                }break;
+                    return;
+                }
                 case '1':{
                     maCnss.setRole("admin");
                     Admin admin = maCnss.adminLogin();
@@ -33,7 +35,6 @@ public class Main {
                     choice = '0';
                 }break;
                 case '2':{
-                    System.out.println("Agent login.....");
                     maCnss.setRole("agent");
                     Agent agent = maCnss.agentLogin();
                     if (agent == null) {
@@ -43,7 +44,13 @@ public class Main {
                     choice = '0';
                 }break;
                 case '3':{
-                    System.out.println("Patient login.....");
+                    maCnss.setRole("patient");
+                    Patient patient = maCnss.patientLogin();
+                    if (patient == null) {
+                        return;
+                    }
+                    maCnss.setPerson(patient);
+                    choice = '0';
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");
@@ -56,7 +63,7 @@ public class Main {
         } else if (maCnss.getRole().equals("agent")) {
             agentBoard(maCnss);
         }else if (maCnss.getRole().equals("patient")){
-            System.out.printf("\nPatient board......");
+            patientBoard(maCnss);
         }else {
             System.out.println("No board found!");
         }
@@ -96,6 +103,27 @@ public class Main {
                 }break;
                 case '1':{
                     maCnss.addAgent();
+                }break;
+                default:{
+                    System.out.println("It seems like you are tired ;)");
+                }
+            }
+        }while (choice != '0');
+
+    }
+
+    public static void patientBoard(MaCnss maCnss){
+        char choice = '+';
+        Menu patientMenu = new Menu("PATIENT MENU");
+        patientMenu.addChoice("view history");
+        do {
+            choice = patientMenu.promptChoice(scanner);
+            switch (choice){
+                case '0':{
+                    System.out.println("GOOD BYE!");
+                }break;
+                case '1':{
+                    maCnss.patientCheckHistory();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");
