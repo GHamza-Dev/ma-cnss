@@ -6,6 +6,7 @@ import org.macnss.Admin;
 import org.macnss.Agent;
 import org.macnss.Patient;
 import org.macnss.Person;
+import org.macnss.Dossier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
