@@ -3,6 +3,7 @@ import db.AgentService;
 import db.PatientService;
 import dialog.Prompt;
 import org.macnss.Admin;
+import org.macnss.Agent;
 import org.macnss.Patient;
 import org.macnss.Person;
 

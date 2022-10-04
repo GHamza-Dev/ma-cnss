@@ -1,12 +1,16 @@
 package db;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DBConnection {
-    private final String URL = "jdbc:mysql://localhost:3306/ma-cnss";
-    private final String USER = "root";
-    private final String PASS = "";
+    Dotenv dotenv = Dotenv.load();
+
+    private final String URL = dotenv.get("DB_URL");
+    private final String USER = dotenv.get("DB_USER");
+    private final String PASS = dotenv.get("DB_PASS");
 
     private Connection con;
 
