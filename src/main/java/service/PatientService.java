@@ -1,5 +1,6 @@
-package db;
+package service;
 
+import db.DBService;
 import org.macnss.Agent;
 import org.macnss.Dossier;
 import org.macnss.Patient;
@@ -9,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PatientService extends DBService{
+public class PatientService extends DBService {
 
     public static boolean insertPatient(Patient patient){
         String sql = "INSERT INTO `patient` (`id`,`mat`, `username`, `email`, `password`) VALUES (NULL,?,?,?,?)";

@@ -1,6 +1,6 @@
-import db.AdminService;
-import db.AgentService;
-import db.PatientService;
+import service.AdminService;
+import service.AgentService;
+import service.PatientService;
 import dialog.Prompt;
 import org.macnss.Admin;
 import org.macnss.Agent;
@@ -10,9 +10,8 @@ import org.macnss.Dossier;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
-import static db.PatientService.getHistory;
+import static service.PatientService.getHistory;
 
 public class MaCnss {
     private String role;

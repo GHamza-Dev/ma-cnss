@@ -1,11 +1,12 @@
-package db;
+package service;
 
+import db.DBService;
 import org.macnss.Admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AdminService extends DBService{
+public class AdminService extends DBService {
 
     public static Admin login(String email,String password){
         try {

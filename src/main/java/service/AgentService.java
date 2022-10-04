@@ -1,5 +1,6 @@
-package db;
+package service;
 
+import db.DBService;
 import org.macnss.Admin;
 import org.macnss.Agent;
 
@@ -7,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AgentService extends DBService{
+public class AgentService extends DBService {
 
     public static Agent login(String email, String password){
         try {
