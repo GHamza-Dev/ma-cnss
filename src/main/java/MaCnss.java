@@ -43,7 +43,7 @@ public class MaCnss {
         long mat = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
         Patient patient = new Patient(p.get("username"),p.get("email"),p.get("password"),mat);
 
-        boolean added = PatientService.insertAgent(patient);
+        boolean added = PatientService.insertPatient(patient);
 
         if (added) {
             System.out.println("Patient added successfully!");

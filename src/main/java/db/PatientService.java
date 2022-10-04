@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class PatientService extends DBService{
 
-    public static boolean insertAgent(Patient patient){
+    public static boolean insertPatient(Patient patient){
         String sql = "INSERT INTO `patient` (`id`,`mat`, `username`, `email`, `password`) VALUES (NULL,?,?,?,?)";
         try {
             PreparedStatement statement = dbConnection.getConnection().prepareStatement(sql);
