@@ -2,7 +2,10 @@ import db.AdminService;
 import db.AgentService;
 import db.PatientService;
 import dialog.Prompt;
-import org.macnss.*;
+import org.macnss.Admin;
+import org.macnss.Agent;
+import org.macnss.Patient;
+import org.macnss.Person;
 
 import java.util.ArrayList;
 import java.util.HashMap;
