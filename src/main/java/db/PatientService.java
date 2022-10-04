@@ -7,6 +7,7 @@ import org.macnss.Patient;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PatientService extends DBService{
 
@@ -43,7 +44,18 @@ public class PatientService extends DBService{
         return null;
     }
 
-//    public static Dossier getHistory(int patientId){
-//
-//    }
+    public static ArrayList<Dossier> getHistory(int patientId){
+        ArrayList<Dossier> dossier = new ArrayList<>();
+        try{
+        ResultSet resultSet = getStatement().executeQuery( "SELECT * FROM dossier WHERE patient_id = 2");
+        while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                dossier.add(new Dossier(id, 2));
+        }
+        return dossier;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }

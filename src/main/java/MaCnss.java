@@ -2,13 +2,13 @@ import db.AdminService;
 import db.AgentService;
 import db.PatientService;
 import dialog.Prompt;
-import org.macnss.Admin;
-import org.macnss.Agent;
-import org.macnss.Patient;
-import org.macnss.Person;
+import org.macnss.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import static db.PatientService.getHistory;
 
 public class MaCnss {
     private String role;
@@ -122,7 +122,11 @@ public class MaCnss {
     }
 
     public void patientCheckHistory(){
-        System.out.println(this.person);
+        ArrayList<Dossier> dossier = getHistory(this.person.getId());
+        if(dossier != null){
+            System.out.println(dossier);
+        }
+
 
     }
 
