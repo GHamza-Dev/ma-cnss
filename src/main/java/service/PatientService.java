@@ -48,10 +48,10 @@ public class PatientService extends DBService {
     public static ArrayList<Dossier> getHistory(int patientId){
         ArrayList<Dossier> dossier = new ArrayList<>();
         try{
-        ResultSet resultSet = getStatement().executeQuery( "SELECT * FROM dossier WHERE patient_id = 2");
+        ResultSet resultSet = getStatement().executeQuery( "SELECT * FROM dossier WHERE patient_id = '"+patientId+"'");
         while (resultSet.next()){
                 int id = resultSet.getInt("id");
-                dossier.add(new Dossier(id, 2));
+                dossier.add(new Dossier(id, patientId));
         }
         return dossier;
         }catch (SQLException e){
