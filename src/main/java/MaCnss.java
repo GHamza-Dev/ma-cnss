@@ -32,6 +32,7 @@ public class MaCnss {
         menu.addChoice("add medication");
         menu.addChoice("add analysis");
         menu.addChoice("add radio");
+        menu.addChoice("display dossier");
         menu.addChoice("confirm registration");
 
         Dossier dossier = new Dossier();
@@ -81,11 +82,20 @@ public class MaCnss {
                     }
                 }break;
                 case '6': {
-                    System.out.println("[CONFIRM...]");
-                }break;
-                case '7': {
                     System.out.println("[DISPLAY DOSSIER...]");
                     System.out.println(dossier);
+                }break;
+                case '7': {
+                    boolean ok = true;
+                    System.out.println("[CONFIRMATION...]");
+                    if (dossier.getPatient() == null) {
+                        System.out.println("[ERROR] : You have not entered a patient yet!");
+                        ok = false;
+                    }
+                    if (dossier.getSpeciality() == null) {
+                        System.out.println("[ERROR] : You have not entered a speciality yet!");
+                        ok = false;
+                    }
                 }break;
                 default: {
                     System.out.println("It seems like you are tired ;)");
