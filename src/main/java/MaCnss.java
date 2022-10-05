@@ -72,6 +72,13 @@ public class MaCnss {
                 }break;
                 case '5': {
                     System.out.println("[add radio...]");
+                    String name = Prompt.promptForRadioName();
+                    Radio radio = RadioService.searchRadio(name);
+                    if (radio == null) {
+                        System.out.println("Radio not found!");
+                    }else {
+                        dossier.addRadio(radio);
+                    }
                 }break;
                 case '6': {
                     System.out.println("[CONFIRM...]");

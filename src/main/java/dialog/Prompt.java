@@ -16,6 +16,11 @@ public class Prompt {
         System.out.print("Enter analysis name: ");
         return scanner.nextLine();
     }
+
+    public static String promptForRadioName(){
+        System.out.print("Enter radio name: ");
+        return scanner.nextLine();
+    }
     public static HashMap<String ,String> promptForCredentials(){
         HashMap<String,String> credentials = new HashMap<>();
 

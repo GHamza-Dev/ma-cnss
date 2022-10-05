@@ -87,6 +87,10 @@ public class Dossier {
         this.analyses.add(analysis);
     }
 
+    public void addRadio(Radio radio){
+        this.radios.add(radio);
+    }
+
     public ArrayList<Radio> getRadios() {
         return radios;
     }
