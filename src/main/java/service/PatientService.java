@@ -3,6 +3,7 @@ package service;
 import db.DBService;
 import org.macnss.Agent;
 import org.macnss.Dossier;
+import org.macnss.Medication;
 import org.macnss.Patient;
 
 import java.sql.PreparedStatement;
@@ -60,5 +61,21 @@ public class PatientService extends DBService {
         }
          */
         return new ArrayList<>();
+    }
+    public static Patient searchPatient(int mat){
+        try {
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement("SELECT * FROM patient where mat = '"+ mat +"'");
+
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()) {
+                return new Patient(rs.getString("username"),rs.getString("email"),rs.getString("password"),rs.getLong("mat"));
+            }
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+
+        return null;
     }
 }
