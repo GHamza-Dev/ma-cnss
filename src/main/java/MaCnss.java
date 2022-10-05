@@ -45,6 +45,13 @@ public class MaCnss {
                 }
                 case '1': {
                     System.out.println("[Add client...]");
+                    int pat = Prompt.promptForPatientSearch();
+                    Patient pationResult = PatientService.searchPatient(pat);
+                    if (pationResult == null) {
+                        System.out.println("Patient not found!");
+                    }else {
+                        dossier.setPatient(pationResult);
+                    }
                 }
                 break;
                 case '2': {
