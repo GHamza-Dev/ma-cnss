@@ -11,6 +11,10 @@ public class Prompt {
         System.out.print("Enter medication name or bar code: ");
         return scanner.nextLine();
     }
+    public static String promptForSpecialitySearch(){
+        System.out.print("Enter speciality name: ");
+        return scanner.nextLine();
+    }
     public static HashMap<String ,String> promptForCredentials(){
         HashMap<String,String> credentials = new HashMap<>();
 
