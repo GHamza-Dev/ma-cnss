@@ -18,6 +18,15 @@ public class Prompt {
     public static int promptForPatientSearch(){
         System.out.print("Enter the client's registration number: ");
         return scanner.nextInt();
+
+    public static String promptForAnalysisName(){
+        System.out.print("Enter analysis name: ");
+        return scanner.nextLine();
+    }
+
+    public static String promptForRadioName(){
+        System.out.print("Enter radio name: ");
+        return scanner.nextLine();
     }
     public static HashMap<String ,String> promptForCredentials(){
         HashMap<String,String> credentials = new HashMap<>();

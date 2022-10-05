@@ -15,4 +15,13 @@ public class Analysis extends Document{
     public void setPercentage(float percentage) {
         this.percentage = percentage;
     }
+
+    @Override
+    public String toString() {
+        return "Analysis{" +
+                "percentage=" + percentage +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
