@@ -1,28 +1,34 @@
 package org.macnss;
 
 public class Speciality extends Document{
-    private int repayment;
-    private boolean medicationRefundable;
+    private float repayment;
+    private int medicationRefundable;
 
-    public Speciality(int id, String name, int repayment, boolean medicationRefundable) {
+    public Speciality(int id, String name, float repayment, int medicationRefundable) {
         super(id, name);
         this.repayment = repayment;
         this.medicationRefundable = medicationRefundable;
     }
 
-    public int getRepayment() {
+    public Speciality(String name, float repayment, int medicationRefundable) {
+        super(name);
+        this.repayment = repayment;
+        this.medicationRefundable = medicationRefundable;
+    }
+
+    public float getRepayment() {
         return repayment;
     }
 
-    public void setRepayment(int repayment) {
+    public void setRepayment(float repayment) {
         this.repayment = repayment;
     }
 
-    public boolean isMedicationRefundable() {
+    public int isMedicationRefundable() {
         return medicationRefundable;
     }
 
-    public void setMedicationRefundable(boolean medicationRefundable) {
+    public void setMedicationRefundable(int medicationRefundable) {
         this.medicationRefundable = medicationRefundable;
     }
 }
