@@ -1,5 +1,7 @@
+import com.mysql.cj.callback.UsernameCallback;
 import service.AdminService;
 import service.AgentService;
+import service.MedicationService;
 import service.PatientService;
 import dialog.Prompt;
 import org.macnss.Admin;
@@ -24,6 +26,11 @@ public class MaCnss {
     public MaCnss(String role, Person person) {
         this.role = role;
         this.person = person;
+    }
+
+    public void addDossier(){
+        String med = Prompt.promptForMedicationSearch();
+        MedicationService.searchMedication(med);
     }
 
     public void addAgent(){
