@@ -1,10 +1,12 @@
 package org.macnss;
 
-public class Medications extends Document{
+public class Medication extends Document{
+    private String barcode;
     private float repayment;
 
-    public Medications(int id, String name, float repayment) {
+    public Medication(int id,String barcode, String name, float repayment) {
         super(id, name);
+        this.barcode = barcode;
         this.repayment = repayment;
     }
 
@@ -18,8 +20,10 @@ public class Medications extends Document{
 
     @Override
     public String toString() {
-        return "Medications{" +
-                "repayment=" + repayment +
+        return "Medication{" +
+                "id='" + id + '\'' +
+                "barcode='" + barcode + '\'' +
+                ", repayment=" + repayment +
                 '}';
     }
 }

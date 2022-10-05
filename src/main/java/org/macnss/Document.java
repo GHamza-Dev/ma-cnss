@@ -1,8 +1,8 @@
 package org.macnss;
 
 public class Document {
-    private int id;
-    private String name;
+    protected int id;
+    protected String name;
 
     public Document(int id, String name) {
         this.id = id;

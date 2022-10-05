@@ -1,14 +1,33 @@
 package org.macnss;
 
+import java.util.ArrayList;
+
 public class Dossier {
     private int id;
-    private int patientId;
+    private float repayment;
     private String status;
-    private int repayment;
 
-    public Dossier(int id, int patientId) {
+    private Patient patient;
+    private Speciality speciality;
+    private ArrayList<Medication> medications;
+    private ArrayList<Radio> radios;
+    private ArrayList<Analysis> analyses;
+
+    public Dossier(){
+        this.medications = new ArrayList<>();
+        this.radios = new ArrayList<>();
+        this.analyses = new ArrayList<>();
+    }
+
+    public Dossier(int id, float repayment, String status, Patient patient, Speciality speciality, ArrayList<Medication> medications, ArrayList<Radio> radios, ArrayList<Analysis> analyses) {
         this.id = id;
-        this.patientId = patientId;
+        this.repayment = repayment;
+        this.status = status;
+        this.patient = patient;
+        this.speciality = speciality;
+        this.medications = medications;
+        this.radios = radios;
+        this.analyses = analyses;
     }
 
     public int getId() {
@@ -19,12 +38,12 @@ public class Dossier {
         this.id = id;
     }
 
-    public int getPatientId() {
-        return patientId;
+    public float getRepayment() {
+        return repayment;
     }
 
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
+    public void setRepayment(float repayment) {
+        this.repayment = repayment;
     }
 
     public String getStatus() {
@@ -35,21 +54,61 @@ public class Dossier {
         this.status = status;
     }
 
-    public int getRepayment() {
-        return repayment;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setRepayment(int repayment) {
-        this.repayment = repayment;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public ArrayList<Medication> getMedications() {
+        return medications;
+    }
+
+    public void setMedications(ArrayList<Medication> medications) {
+        this.medications = medications;
+    }
+
+    public void addMedication(Medication medication){
+        this.medications.add(medication);
+    }
+
+    public ArrayList<Radio> getRadios() {
+        return radios;
+    }
+
+    public void setRadios(ArrayList<Radio> radios) {
+        this.radios = radios;
+    }
+
+    public ArrayList<Analysis> getAnalyses() {
+        return analyses;
+    }
+
+    public void setAnalyses(ArrayList<Analysis> analyses) {
+        this.analyses = analyses;
     }
 
     @Override
     public String toString() {
         return "Dossier{" +
                 "id=" + id +
-                ", patientId=" + patientId +
-                ", status='" + status + '\'' +
                 ", repayment=" + repayment +
+                ", status='" + status + '\'' +
+                ", patient=" + patient +
+                ", speciality=" + speciality +
+                ", medications=" + medications +
+                ", radios=" + radios +
+                ", analyses=" + analyses +
                 '}';
     }
 }

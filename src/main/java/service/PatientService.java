@@ -46,6 +46,7 @@ public class PatientService extends DBService {
     }
 
     public static ArrayList<Dossier> getHistory(int patientId){
+        /*
         ArrayList<Dossier> dossier = new ArrayList<>();
         try{
         ResultSet resultSet = getStatement().executeQuery( "SELECT * FROM dossier WHERE patient_id = '"+patientId+"'");
@@ -57,6 +58,7 @@ public class PatientService extends DBService {
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
-        return null;
+         */
+        return new ArrayList<>();
     }
 }
