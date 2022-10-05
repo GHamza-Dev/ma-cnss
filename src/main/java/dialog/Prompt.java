@@ -13,6 +13,7 @@ public class Prompt {
     }
     public static String promptForSpecialitySearch(){
         System.out.print("Enter speciality name: ");
+        scanner.nextLine();
         return scanner.nextLine();
     }
     public static int promptForPatientSearch() {

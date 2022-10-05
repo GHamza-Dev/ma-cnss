@@ -32,6 +32,13 @@ public class Dossier {
         this.analyses = analyses;
     }
 
+    public ArrayList<Integer> getMedicationIds(){
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < this.medications.size(); i++) {
+            ids.add(this.medications.get(i).getId());
+        }
+        return ids;
+    }
     public int getId() {
         return id;
     }
