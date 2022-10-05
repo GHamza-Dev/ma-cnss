@@ -9,6 +9,10 @@ public class Document {
         this.name = name;
     }
 
+    public Document(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
