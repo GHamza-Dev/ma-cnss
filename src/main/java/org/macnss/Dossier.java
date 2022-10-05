@@ -1,5 +1,7 @@
 package org.macnss;
 
+import service.AnalysisService;
+
 import java.util.ArrayList;
 
 public class Dossier {
@@ -80,6 +82,13 @@ public class Dossier {
 
     public void addMedication(Medication medication){
         this.medications.add(medication);
+    }
+    public void addAnalysis(Analysis analysis){
+        this.analyses.add(analysis);
+    }
+
+    public void addRadio(Radio radio){
+        this.radios.add(radio);
     }
 
     public ArrayList<Radio> getRadios() {
