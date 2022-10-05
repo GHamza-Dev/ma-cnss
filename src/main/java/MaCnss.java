@@ -1,9 +1,6 @@
 import menu.Menu;
 import org.macnss.*;
-import service.AdminService;
-import service.AgentService;
-import service.MedicationService;
-import service.PatientService;
+import service.*;
 import dialog.Prompt;
 
 import java.util.ArrayList;
@@ -65,6 +62,13 @@ public class MaCnss {
                 }break;
                 case '4': {
                     System.out.println("[add analysis...]");
+                    String name = Prompt.promptForAnalysisName();
+                    Analysis analysis = AnalysisService.searchAnalysis(name);
+                    if (analysis == null) {
+                        System.out.println("Analysis not found!");
+                    }else {
+                        dossier.addAnalysis(analysis);
+                    }
                 }break;
                 case '5': {
                     System.out.println("[add radio...]");

@@ -11,6 +11,11 @@ public class Prompt {
         System.out.print("Enter medication name or bar code: ");
         return scanner.nextLine();
     }
+
+    public static String promptForAnalysisName(){
+        System.out.print("Enter analysis name: ");
+        return scanner.nextLine();
+    }
     public static HashMap<String ,String> promptForCredentials(){
         HashMap<String,String> credentials = new HashMap<>();
 
