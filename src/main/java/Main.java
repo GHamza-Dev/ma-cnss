@@ -73,6 +73,7 @@ public class Main {
         char choice = '+';
         Menu agentMenu = new Menu("AGENT MENU");
         agentMenu.addChoice("add patient");
+        agentMenu.addChoice("add dossier");
 
         do {
             choice = agentMenu.promptChoice(scanner);
@@ -82,6 +83,9 @@ public class Main {
                 }break;
                 case '1':{
                     maCnss.addPatient();
+                }break;
+                case '2':{
+                    maCnss.addDossier();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");
