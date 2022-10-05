@@ -11,6 +11,13 @@ public class Prompt {
         System.out.print("Enter medication name or bar code: ");
         return scanner.nextLine();
     }
+    public static String promptForSpecialitySearch(){
+        System.out.print("Enter speciality name: ");
+        return scanner.nextLine();
+    }
+    public static int promptForPatientSearch(){
+        System.out.print("Enter the client's registration number: ");
+        return scanner.nextInt();
 
     public static String promptForAnalysisName(){
         System.out.print("Enter analysis name: ");

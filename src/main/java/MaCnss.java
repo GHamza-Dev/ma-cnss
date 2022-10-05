@@ -46,10 +46,24 @@ public class MaCnss {
                 }
                 case '1': {
                     System.out.println("[Add client...]");
+                    int pat = Prompt.promptForPatientSearch();
+                    Patient pationResult = PatientService.searchPatient(pat);
+                    if (pationResult == null) {
+                        System.out.println("Patient not found!");
+                    }else {
+                        dossier.setPatient(pationResult);
+                    }
                 }
                 break;
                 case '2': {
                     System.out.println("[add doctor...]");
+                    String med = Prompt.promptForSpecialitySearch();
+                    Speciality specialityResult = SpecialityService.searchSpeciality(med);
+                    if (specialityResult == null) {
+                        System.out.println("Speciality not found!");
+                    }else {
+                        dossier.setSpeciality(specialityResult);
+                    }
                 }break;
                 case '3': {
                     System.out.println("[add medication...]");
