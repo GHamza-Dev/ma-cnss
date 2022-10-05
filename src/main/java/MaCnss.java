@@ -1,9 +1,6 @@
 import menu.Menu;
 import org.macnss.*;
-import service.AdminService;
-import service.AgentService;
-import service.MedicationService;
-import service.PatientService;
+import service.*;
 import dialog.Prompt;
 
 import java.util.ArrayList;
@@ -52,6 +49,13 @@ public class MaCnss {
                 break;
                 case '2': {
                     System.out.println("[add doctor...]");
+                    String med = Prompt.promptForSpecialitySearch();
+                    Speciality specialityResult = SpecialityService.searchSpeciality(med);
+                    if (specialityResult == null) {
+                        System.out.println("Speciality not found!");
+                    }else {
+                        dossier.setSpeciality(specialityResult);
+                    }
                 }break;
                 case '3': {
                     System.out.println("[add medication...]");
