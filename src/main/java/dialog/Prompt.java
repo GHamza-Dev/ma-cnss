@@ -29,6 +29,11 @@ public class Prompt {
         System.out.print("Enter radio name: ");
         return scanner.nextLine();
     }
+
+    public static float promptForPayedAmount(){
+        System.out.print("Enter payed amount: ");
+        return scanner.nextFloat();
+    }
     public static HashMap<String ,String> promptForCredentials(){
         HashMap<String,String> credentials = new HashMap<>();
 
