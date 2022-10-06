@@ -1,8 +1,10 @@
+import mailService.SendingEmail;
 import menu.Menu;
 import org.macnss.*;
 import service.*;
 import dialog.Prompt;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -191,10 +193,21 @@ public class MaCnss {
             Agent agent = AgentService.login(credentials.get("email"), credentials.get("password"));
 
             if (agent != null) {
-                return agent;
+                int code = MaCnss.generateCode();
+                LocalTime time = LocalTime.now();
+                SendingEmail.send("benjarmoun123@gmail.com","Confirmation code","Your confirmation code is:"+ code);
+                System.out.println("Enter confirmation code!!");
+                Scanner scanner = new Scanner(System.in);
+                int confirmationCode = scanner.nextInt();
+                if (confirmationCode == code && LocalTime.now().compareTo(time.plusMinutes(5)) < 1){
+                    return agent;
+                }else {
+                    System.out.println("Confirmation code invalid");
+                }
+            }else {
+                System.out.println("Username or password does not match!");
             }
 
-            System.out.println("Username or password does not match!");
 
             attempts++;
         }
