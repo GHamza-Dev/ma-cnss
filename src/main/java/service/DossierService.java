@@ -2,6 +2,7 @@ package service;
 
 import db.DBService;
 import org.macnss.Dossier;
+import org.macnss.Patient;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,8 @@ public class DossierService extends DBService {
 
     public static int insertDossier(Dossier dossier){
         int patient_id = dossier.getPatient().getId();
+        int speciality_id = dossier.getSpeciality().getId();
+        float repayment = dossier.getRepayment();
 
         ArrayList<Integer> medIds = dossier.getMedicationIds();
         ArrayList<Integer> radIds = dossier.getRadioIds();
@@ -21,8 +24,9 @@ public class DossierService extends DBService {
         int lastInsertedDossierId = 0;
 
         try {
-            PreparedStatement statement = dbConnection.getConnection().prepareStatement("INSERT INTO `dossier` (`id`, `patient_id`, `status`, `repayment`) VALUES (NULL, ?, 'waiting', '00.00')", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement("INSERT INTO `dossier` (`id`, `patient_id`, `status`, `repayment`) VALUES (NULL, ?, 'waiting',?)", Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1,patient_id);
+            statement.setFloat(2,repayment);
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -30,6 +34,7 @@ public class DossierService extends DBService {
                 if (medIds != null) attacheMedications(lastInsertedDossierId,medIds);
                 if (radIds != null) attacheRadios(lastInsertedDossierId,radIds);
                 if (anaIds != null) attacheAnalysis(lastInsertedDossierId,anaIds);
+                attacheSpeciality(lastInsertedDossierId,speciality_id);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -39,6 +44,22 @@ public class DossierService extends DBService {
         return lastInsertedDossierId;
     }
 
+    public static boolean attacheSpeciality(int dossier_id,int specialityId){
+        String sql = "INSERT INTO `dossier_specialty` (`id`, `dossier_id`, `specialty_id`) VALUES (NULL, ?, ?)";
+        try {
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement(sql);
+            statement.setInt(1,dossier_id);
+            statement.setInt(2,specialityId);
+            if (statement.executeUpdate() > 0) {
+                System.out.println("[SUCCESS] : Doctor inserted successfully!");
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
     public static boolean attacheAnalysis(int dossier_id,ArrayList<Integer> analysisIds){
         String sql = "INSERT INTO `dossier_analysis` (`id`, `dossier_id`, `analysis_id`) VALUES";
         int parameterIndex1 = 1;

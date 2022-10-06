@@ -82,6 +82,8 @@ public class MaCnss {
                     if (analysis == null) {
                         System.out.println("Analysis not found!");
                     }else {
+                        float payedAmt = Prompt.promptForPayedAmount();
+                        analysis.setPayedAmount(payedAmt);
                         dossier.addAnalysis(analysis);
                     }
                 }break;
@@ -92,6 +94,8 @@ public class MaCnss {
                     if (radio == null) {
                         System.out.println("Radio not found!");
                     }else {
+                        float payedAmt = Prompt.promptForPayedAmount();
+                        radio.setPayedAmount(payedAmt);
                         dossier.addRadio(radio);
                     }
                 }break;
@@ -111,6 +115,8 @@ public class MaCnss {
                         ok = false;
                     }
                     if (ok) {
+                        float repayment = dossier.calculateRepayment();
+                        dossier.setRepayment(repayment);
                         DossierService.insertDossier(dossier);
                     }
                 }break;
