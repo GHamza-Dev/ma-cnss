@@ -54,6 +54,18 @@ public class Dossier {
         }
         return ids;
     }
+
+    public ArrayList<Integer> getAnalysisIds(){
+        int size = this.analyses.size();
+        if (size == 0) {
+            return null;
+        }
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            ids.add(this.analyses.get(i).getId());
+        }
+        return ids;
+    }
     public int getId() {
         return id;
     }
