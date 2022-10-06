@@ -55,18 +55,33 @@ public class MaCnss {
         }
 
         int dId = Prompt.promptForDossierId();
+
+        Dossier selectedDossier = dossiers.stream()
+                .filter(dossier1 -> dossier1.getId() == dId)
+                .findAny()
+                .orElse(null);
+
+        if (selectedDossier == null) {
+            System.out.println("Please enter a valid dossier id!!!");
+            return;
+        }
+
+        System.out.println(selectedDossier);
+
         HashMap<String,String> decision = new HashMap<>();
         decision.put("a","accepted");
         decision.put("b","rejected");
 
-        System.out.println("Click 1 to confirm repayment");
-        System.out.println("Click 2 to reject repayment");
+        System.out.println("Click [a] to confirm repayment");
+        System.out.println("Click [b] to reject repayment");
         System.out.print("Answer: ");
 
-        boolean ok = DossierService.setDossierStatus(dId,decision.get(new Scanner(System.in).nextLine()));
+        String answer = new Scanner(System.in).nextLine();
+        boolean ok = DossierService.setDossierStatus(dId,decision.get(answer));
 
         if (ok) {
             System.out.println("[SUCCESS] : Dossier status changed successfully");
+            SendingEmail.send(selectedDossier.getPatient().getEmail(),"State of cnss request","Your repayment request has been "+ decision.get(answer));
             return;
         }
 
