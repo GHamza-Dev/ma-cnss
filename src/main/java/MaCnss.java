@@ -247,6 +247,11 @@ public class MaCnss {
 
     }
 
+    public static int generateCode() {
+        int b = (int)(Math.random()*(9999-0+1)+0);
+        return b;
+    }
+
     public void setRole(String role) {
         this.role = role;
     }
