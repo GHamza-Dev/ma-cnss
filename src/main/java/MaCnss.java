@@ -242,8 +242,8 @@ public class MaCnss {
             if (agent != null) {
                 int code = MaCnss.generateCode();
                 LocalTime time = LocalTime.now();
-                SendingEmail.send("benjarmoun123@gmail.com","Confirmation code","Your confirmation code is:"+ code);
-                System.out.println("Enter confirmation code!!");
+                SendingEmail.send(credentials.get("email"),"Confirmation code","Your confirmation code is:"+ code);
+                System.out.print("Enter confirmation code: ");
                 Scanner scanner = new Scanner(System.in);
                 int confirmationCode = scanner.nextInt();
                 if (confirmationCode == code && LocalTime.now().compareTo(time.plusMinutes(5)) < 1){
