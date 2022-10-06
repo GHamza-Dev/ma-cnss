@@ -29,4 +29,12 @@ public class Radio extends Document{
     public void setPayedAmount(float payedAmount) {
         this.payedAmount = payedAmount;
     }
+
+    @Override
+    public String toString() {
+        String output = "Radio ID: "+this.id+"\n";
+        output+="Radio name: "+this.name+"\n";
+        output+="Repayment percentage: "+this.percentage;
+        return output;
+    }
 }

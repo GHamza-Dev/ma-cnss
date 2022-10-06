@@ -2,10 +2,10 @@ package org.macnss;
 
 public class Person {
 
-    private int id;
-    private String username;
-    private String email;
-    private String password;
+    protected int id;
+    protected String username;
+    protected String email;
+    protected String password;
 
     public Person() {
 

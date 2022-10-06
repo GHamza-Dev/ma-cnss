@@ -23,8 +23,9 @@ public class Patient extends Person{
 
     @Override
     public String toString() {
-        return "Patient{" +
-                "mat=" + mat +
-                '}';
+        String output = "Patient ID: "+this.id+"\n";
+        output+="MAT: "+this.mat+"\n";
+        output+="Full name: "+this.username;
+        return output;
     }
 }

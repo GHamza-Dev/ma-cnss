@@ -7,6 +7,10 @@ public class Prompt {
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    public static int promptForDossierId(){
+        System.out.print("Enter dossier id: ");
+        return scanner.nextInt();
+    }
     public static String promptForMedicationSearch(){
         System.out.print("Enter medication name or bar code: ");
         return scanner.nextLine();

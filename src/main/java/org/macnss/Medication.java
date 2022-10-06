@@ -20,10 +20,9 @@ public class Medication extends Document{
 
     @Override
     public String toString() {
-        return "Medication{" +
-                "id='" + id + '\'' +
-                "barcode='" + barcode + '\'' +
-                ", repayment=" + repayment +
-                '}';
+        String output = "Medication ID: "+this.id+"\n";
+        output+="Bar code: "+this.barcode+"\n";
+        output+="Expected repayment: "+this.repayment;
+        return output;
     }
 }
