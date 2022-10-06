@@ -31,4 +31,12 @@ public class Speciality extends Document{
     public void setMedicationRefundable(int medicationRefundable) {
         this.medicationRefundable = medicationRefundable;
     }
+
+    @Override
+    public String toString() {
+        String output ="Speciality ID: "+this.id+"\n";
+        output+="Doctor speciality: "+this.name+"\n";
+        output+="Expected repayment: "+this.repayment;
+        return output;
+    }
 }

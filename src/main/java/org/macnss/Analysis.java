@@ -33,10 +33,9 @@ public class Analysis extends Document{
 
     @Override
     public String toString() {
-        return "Analysis{" +
-                "percentage=" + percentage +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        String output = "Analysis ID: "+this.id+"\n";
+        output+="Analysis name: "+this.name+"\n";
+        output+="Repayment percentage: "+this.percentage;
+        return output;
     }
 }

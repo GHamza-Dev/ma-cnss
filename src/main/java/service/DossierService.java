@@ -3,6 +3,7 @@ package service;
 import db.DBService;
 import org.macnss.Dossier;
 import org.macnss.Patient;
+import org.macnss.Radio;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,42 @@ import java.util.ArrayList;
 
 public class DossierService extends DBService {
 
+    public static boolean setDossierStatus(int dossierId,String status){
+        try {
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement("UPDATE `dossier` SET `status` = ? WHERE `dossier`.`id` = ?");
+            statement.setString(1,status);
+            statement.setInt(2,dossierId);
+            if (statement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public static ArrayList<Dossier> selectDossiers(String status){
+        ArrayList<Dossier> dossiers = new ArrayList<>();
+        try {
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement("SELECT dossier.id as dossier_id, dossier.status, dossier.repayment, patient.* FROM dossier JOIN patient ON dossier.patient_id = patient.id where status = ?");
+            statement.setString(1,status);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                Dossier dossier = new Dossier();
+                dossier.setRepayment(rs.getFloat("repayment"));
+                dossier.setStatus(rs.getString("status"));
+                dossier.setId(rs.getInt("dossier_id"));
+                dossier.setPatient(new Patient(rs.getInt("id"),rs.getString("username"),rs.getString("email"),"####",rs.getInt("mat")));
+                dossiers.add(dossier);
+            }
+            return dossiers;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return null;
+    }
     public static int insertDossier(Dossier dossier){
         int patient_id = dossier.getPatient().getId();
         int speciality_id = dossier.getSpeciality().getId();

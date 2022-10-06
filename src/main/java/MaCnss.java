@@ -15,15 +15,62 @@ public class MaCnss {
     private String role;
     private Person person;
 
-    private Dossier listDossier;
+    private ArrayList<Dossier> listDossier;
+
+    public void setListDossier(ArrayList<Dossier> listDossier) {
+        this.listDossier = listDossier;
+    }
 
     public MaCnss() {
-
+        this.listDossier = new ArrayList<>();
     }
 
     public MaCnss(String role, Person person) {
         this.role = role;
         this.person = person;
+    }
+
+    public void displayDossiers(){
+        ArrayList<Dossier> dossiers = DossierService.selectDossiers("waiting");
+
+        if (dossiers == null) {
+            System.out.println("There are no dossiers to display!");
+            return;
+        }
+
+        for (Dossier dossier: dossiers) {
+            System.out.println(dossier);
+        }
+    }
+    public void validateDossiers(){
+        ArrayList<Dossier> dossiers = DossierService.selectDossiers("waiting");
+
+        if (dossiers == null) {
+            System.out.println("There are no dossiers to display!");
+            return;
+        }
+
+        for (Dossier dossier: dossiers) {
+            System.out.println(dossier);
+        }
+
+        int dId = Prompt.promptForDossierId();
+        HashMap<String,String> decision = new HashMap<>();
+        decision.put("a","accepted");
+        decision.put("b","rejected");
+
+        System.out.println("Click 1 to confirm repayment");
+        System.out.println("Click 2 to reject repayment");
+        System.out.print("Answer: ");
+
+        boolean ok = DossierService.setDossierStatus(dId,decision.get(new Scanner(System.in).nextLine()));
+
+        if (ok) {
+            System.out.println("[SUCCESS] : Dossier status changed successfully");
+            return;
+        }
+
+        System.out.println("[FAILED] : Ops something went wrong while changing dossier status");
     }
 
     public void addDossier() {
