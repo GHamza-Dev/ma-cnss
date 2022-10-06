@@ -15,7 +15,7 @@ public class SpecialityService extends DBService {
             PreparedStatement statement = dbConnection.getConnection().prepareStatement("SELECT * FROM speciality where name ='" + speciality + "' ");
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                return new Speciality(rs.getString("name"),rs.getFloat("repayment"),rs.getInt("medication_refundable"));
+                return new Speciality(rs.getInt("id"), rs.getString("name"),rs.getFloat("repayment"),rs.getInt("medication_refundable"));
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());

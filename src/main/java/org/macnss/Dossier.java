@@ -2,6 +2,7 @@ package org.macnss;
 
 import service.AnalysisService;
 
+import javax.swing.plaf.PanelUI;
 import java.util.ArrayList;
 
 public class Dossier {
@@ -32,6 +33,76 @@ public class Dossier {
         this.analyses = analyses;
     }
 
+    public float calculateRepayment(){
+        float repayment = 0;
+        repayment+=this.speciality.getRepayment();
+        repayment+=calculateAnalysisRepayment();
+        repayment+=calculateRadioRepayment();
+
+        if (this.speciality.isMedicationRefundable() == 1) {
+            float medRepayment = calculateMedicationRepayment();
+            repayment+=medRepayment;
+        }
+        return repayment;
+    }
+
+    public float calculateMedicationRepayment(){
+        float repayment = 0;
+        for (Medication medication: this.medications) {
+            repayment+=medication.getRepayment();
+        }
+        return repayment;
+    }
+
+    public float calculateRadioRepayment(){
+        float repayment = 0;
+        for (Radio radio: this.radios) {
+            repayment+=(radio.getPercentage()*radio.getPayedAmount())/100;
+        }
+        return repayment;
+    }
+    public float calculateAnalysisRepayment(){
+        float repayment = 0;
+        for (Analysis analysis: this.analyses) {
+            repayment+=(analysis.getPercentage()*analysis.getPayedAmount())/100;
+        }
+        return repayment;
+    }
+
+    public ArrayList<Integer> getMedicationIds(){
+        int size = this.medications.size();
+        if (size == 0) {
+            return null;
+        }
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            ids.add(this.medications.get(i).getId());
+        }
+        return ids;
+    }
+    public ArrayList<Integer> getRadioIds(){
+        int size = this.radios.size();
+        if (size == 0) {
+            return null;
+        }
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            ids.add(this.radios.get(i).getId());
+        }
+        return ids;
+    }
+
+    public ArrayList<Integer> getAnalysisIds(){
+        int size = this.analyses.size();
+        if (size == 0) {
+            return null;
+        }
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            ids.add(this.analyses.get(i).getId());
+        }
+        return ids;
+    }
     public int getId() {
         return id;
     }

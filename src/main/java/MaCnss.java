@@ -47,18 +47,18 @@ public class MaCnss {
                 case '1': {
                     System.out.println("[Add client...]");
                     int pat = Prompt.promptForPatientSearch();
-                    Patient pationResult = PatientService.searchPatient(pat);
-                    if (pationResult == null) {
+                    Patient patientResult = PatientService.searchPatient(pat);
+                    if (patientResult == null) {
                         System.out.println("Patient not found!");
                     }else {
-                        dossier.setPatient(pationResult);
+                        dossier.setPatient(patientResult);
                     }
                 }
                 break;
                 case '2': {
                     System.out.println("[add doctor...]");
-                    String med = Prompt.promptForSpecialitySearch();
-                    Speciality specialityResult = SpecialityService.searchSpeciality(med);
+                    String speciality = Prompt.promptForSpecialitySearch();
+                    Speciality specialityResult = SpecialityService.searchSpeciality(speciality);
                     if (specialityResult == null) {
                         System.out.println("Speciality not found!");
                     }else {
@@ -82,6 +82,8 @@ public class MaCnss {
                     if (analysis == null) {
                         System.out.println("Analysis not found!");
                     }else {
+                        float payedAmt = Prompt.promptForPayedAmount();
+                        analysis.setPayedAmount(payedAmt);
                         dossier.addAnalysis(analysis);
                     }
                 }break;
@@ -92,6 +94,8 @@ public class MaCnss {
                     if (radio == null) {
                         System.out.println("Radio not found!");
                     }else {
+                        float payedAmt = Prompt.promptForPayedAmount();
+                        radio.setPayedAmount(payedAmt);
                         dossier.addRadio(radio);
                     }
                 }break;
@@ -109,6 +113,11 @@ public class MaCnss {
                     if (dossier.getSpeciality() == null) {
                         System.out.println("[ERROR] : You have not entered a speciality yet!");
                         ok = false;
+                    }
+                    if (ok) {
+                        float repayment = dossier.calculateRepayment();
+                        dossier.setRepayment(repayment);
+                        DossierService.insertDossier(dossier);
                     }
                 }break;
                 default: {

@@ -68,7 +68,7 @@ public class PatientService extends DBService {
 
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                return new Patient(rs.getString("username"),rs.getString("email"),rs.getString("password"),rs.getLong("mat"));
+                return new Patient(rs.getInt("id"),rs.getString("username"),rs.getString("email"),rs.getString("password"),rs.getLong("mat"));
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
