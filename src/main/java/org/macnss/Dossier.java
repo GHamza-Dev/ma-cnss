@@ -33,9 +33,24 @@ public class Dossier {
     }
 
     public ArrayList<Integer> getMedicationIds(){
+        int size = this.medications.size();
+        if (size == 0) {
+            return null;
+        }
         ArrayList<Integer> ids = new ArrayList<>();
-        for (int i = 0; i < this.medications.size(); i++) {
+        for (int i = 0; i < size; i++) {
             ids.add(this.medications.get(i).getId());
+        }
+        return ids;
+    }
+    public ArrayList<Integer> getRadioIds(){
+        int size = this.radios.size();
+        if (size == 0) {
+            return null;
+        }
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            ids.add(this.radios.get(i).getId());
         }
         return ids;
     }
