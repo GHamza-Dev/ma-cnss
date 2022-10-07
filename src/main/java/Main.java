@@ -74,6 +74,7 @@ public class Main {
         Menu agentMenu = new Menu("AGENT MENU");
         agentMenu.addChoice("add patient");
         agentMenu.addChoice("add dossier");
+        agentMenu.addChoice("check dossiers");
 
         do {
             choice = agentMenu.promptChoice(scanner);
@@ -86,6 +87,9 @@ public class Main {
                 }break;
                 case '2':{
                     maCnss.addDossier();
+                }break;
+                case '3':{
+                    maCnss.validateDossiers();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");
@@ -126,7 +130,7 @@ public class Main {
                     System.out.println("GOOD BYE!");
                 }break;
                 case '1':{
-                    maCnss.patientCheckHistory();
+                    maCnss.displayPatientDossiers();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");

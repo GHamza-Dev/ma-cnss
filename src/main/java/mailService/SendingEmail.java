@@ -1,5 +1,7 @@
 package mailService;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -11,14 +13,18 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class SendingEmail {
+    private static final  Dotenv dotenv = Dotenv.load();
+    private static final String MAIL_PASS = dotenv.get("MAIL_PASS");
+    private static final String USER_EMAIL = dotenv.get("USER_EMAIL");
+    private static final String FROM = dotenv.get("USER_EMAIL");
+    private static final boolean SMTP_DEBUG = false;
 
-    public static void send(String toAddress,String subject,String text) {
-
+    public static void send(String toAddress, String subject, String text) {
         // Recipient's email ID needs to be mentioned.
         String to = toAddress; // email
 
         // Sender's email ID needs to be mentioned
-        String from = "benjarmoun123@gmail.com";
+        String from = FROM;
 
         // Assuming you are sending email from through gmails smtp
         String host = "smtp.gmail.com";
@@ -34,16 +40,13 @@ public class SendingEmail {
 
         // Get the Session object.// and pass username and password
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("benjarmoun123@gmail.com", "momcbkmwzpkxpdha");
+                return new PasswordAuthentication(USER_EMAIL, MAIL_PASS);
             }
-
         });
 
         // Used to debug SMTP issues
-//        session.setDebug(true);
-
+        session.setDebug(SMTP_DEBUG);
 
         try {
             // Create a default MimeMessage object.
@@ -66,7 +69,5 @@ public class SendingEmail {
         } catch (MessagingException mex) {
             mex.printStackTrace();
         }
-
     }
-
 }

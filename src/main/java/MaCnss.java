@@ -15,15 +15,88 @@ public class MaCnss {
     private String role;
     private Person person;
 
-    private Dossier listDossier;
+    private ArrayList<Dossier> listDossier;
+
+    public void setListDossier(ArrayList<Dossier> listDossier) {
+        this.listDossier = listDossier;
+    }
 
     public MaCnss() {
-
+        this.listDossier = new ArrayList<>();
     }
 
     public MaCnss(String role, Person person) {
         this.role = role;
         this.person = person;
+    }
+
+    public void displayPatientDossiers(){
+        ArrayList<Dossier> dossiers = new ArrayList<>();
+        if (this.person == null) {
+            System.out.println("Ops something went wrong please try again");
+            return;
+        }
+        dossiers = DossierService.selectDossiers(this.person.getId());
+        for (Dossier dossier: dossiers) {
+            System.out.println(dossier);
+        }
+    }
+    public void displayDossiers(){
+        ArrayList<Dossier> dossiers = DossierService.selectDossiers("waiting");
+
+        if (dossiers == null) {
+            System.out.println("There are no dossiers to display!");
+            return;
+        }
+
+        for (Dossier dossier: dossiers) {
+            System.out.println(dossier);
+        }
+    }
+    public void validateDossiers(){
+        ArrayList<Dossier> dossiers = DossierService.selectDossiers("waiting");
+
+        if (dossiers == null) {
+            System.out.println("There are no dossiers to display!");
+            return;
+        }
+
+        for (Dossier dossier: dossiers) {
+            System.out.println(dossier);
+        }
+
+        int dId = Prompt.promptForDossierId();
+
+        Dossier selectedDossier = dossiers.stream()
+                .filter(dossier1 -> dossier1.getId() == dId)
+                .findAny()
+                .orElse(null);
+
+        if (selectedDossier == null) {
+            System.out.println("Please enter a valid dossier id!!!");
+            return;
+        }
+
+        System.out.println(selectedDossier);
+
+        HashMap<String,String> decision = new HashMap<>();
+        decision.put("a","accepted");
+        decision.put("b","rejected");
+
+        System.out.println("Click [a] to confirm repayment");
+        System.out.println("Click [b] to reject repayment");
+        System.out.print("Answer: ");
+
+        String answer = new Scanner(System.in).nextLine();
+        boolean ok = DossierService.setDossierStatus(dId,decision.get(answer));
+
+        if (ok) {
+            System.out.println("[SUCCESS] : Dossier status changed successfully");
+            SendingEmail.send(selectedDossier.getPatient().getEmail(),"State of cnss request","Your repayment request has been "+ decision.get(answer));
+            return;
+        }
+
+        System.out.println("[FAILED] : Ops something went wrong while changing dossier status");
     }
 
     public void addDossier() {
@@ -195,8 +268,8 @@ public class MaCnss {
             if (agent != null) {
                 int code = MaCnss.generateCode();
                 LocalTime time = LocalTime.now();
-                SendingEmail.send("benjarmoun123@gmail.com","Confirmation code","Your confirmation code is:"+ code);
-                System.out.println("Enter confirmation code!!");
+                SendingEmail.send(credentials.get("email"),"Confirmation code","Your confirmation code is:"+ code);
+                System.out.print("Enter confirmation code: ");
                 Scanner scanner = new Scanner(System.in);
                 int confirmationCode = scanner.nextInt();
                 if (confirmationCode == code && LocalTime.now().compareTo(time.plusMinutes(5)) < 1){

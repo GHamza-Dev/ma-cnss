@@ -180,15 +180,40 @@ public class Dossier {
 
     @Override
     public String toString() {
-        return "Dossier{" +
-                "id=" + id +
-                ", repayment=" + repayment +
-                ", status='" + status + '\'' +
-                ", patient=" + patient +
-                ", speciality=" + speciality +
-                ", medications=" + medications +
-                ", radios=" + radios +
-                ", analyses=" + analyses +
-                '}';
+        String output = "***** Dossier N°: "+this.id+" *****\n";
+        output+= "Status: "+this.status+"\n";
+
+        if (this.status.equals("accepted")) {
+            output+=" - Repayment: "+this.repayment+"\n";
+        }
+
+        output+= patient+"\n";
+
+        if (this.speciality != null){
+            output+="-------------------\n";
+            output+= speciality+"\n";
+        }
+
+        if (this.medications.size() > 0) {
+            output+="-------------------\n";
+            for (Medication medication: this.medications) {
+                output+=medication+"\n";
+            }
+        }
+
+        if (this.radios.size() > 0) {
+            output+="-------------------\n";
+            for (Radio radio: this.radios) {
+                output+=radio;
+            }
+        }
+
+        if (this.analyses.size() > 0) {
+            output+="-------------------\n";
+            for (Analysis analysis: this.analyses) {
+                output+=analysis;
+            }
+        }
+        return output;
     }
 }
