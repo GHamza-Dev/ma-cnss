@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import static service.PatientService.getHistory;
-
 public class MaCnss {
     private String role;
     private Person person;
@@ -308,15 +306,6 @@ public class MaCnss {
 
             attempts++;
         }
-
-    }
-
-    public void patientCheckHistory() {
-        ArrayList<Dossier> dossier = getHistory(this.person.getId());
-        if (dossier != null) {
-            System.out.println(dossier);
-        }
-
 
     }
 
