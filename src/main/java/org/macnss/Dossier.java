@@ -183,7 +183,7 @@ public class Dossier {
         String output = "***** Dossier N°: "+this.id+" *****\n";
         output+= "Status: "+this.status+"\n";
 
-        if (this.status.equals("accepted")) {
+        if (this.status != null && this.status.equals("accepted")) {
             output+=" - Repayment: "+this.repayment+"\n";
         }
 
