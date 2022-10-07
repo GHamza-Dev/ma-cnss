@@ -181,7 +181,12 @@ public class Dossier {
     @Override
     public String toString() {
         String output = "***** Dossier N°: "+this.id+" *****\n";
-        output+= "Status: "+this.status+" - Repayment: "+this.repayment+"\n";
+        output+= "Status: "+this.status+"\n";
+
+        if (this.status.equals("accepted")) {
+            output+=" - Repayment: "+this.repayment+"\n";
+        }
+
         output+= patient+"\n";
 
         if (this.speciality != null){

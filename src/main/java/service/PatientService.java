@@ -46,22 +46,6 @@ public class PatientService extends DBService {
         return null;
     }
 
-    public static ArrayList<Dossier> getHistory(int patientId){
-        /*
-        ArrayList<Dossier> dossier = new ArrayList<>();
-        try{
-        ResultSet resultSet = getStatement().executeQuery( "SELECT * FROM dossier WHERE patient_id = '"+patientId+"'");
-        while (resultSet.next()){
-                int id = resultSet.getInt("id");
-                dossier.add(new Dossier(id, patientId));
-        }
-        return dossier;
-        }catch (SQLException e){
-            System.out.println(e.getMessage());
-        }
-         */
-        return new ArrayList<>();
-    }
     public static Patient searchPatient(int mat){
         try {
             PreparedStatement statement = dbConnection.getConnection().prepareStatement("SELECT * FROM patient where mat = '"+ mat +"'");

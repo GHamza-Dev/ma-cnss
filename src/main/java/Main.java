@@ -130,7 +130,7 @@ public class Main {
                     System.out.println("GOOD BYE!");
                 }break;
                 case '1':{
-                    maCnss.patientCheckHistory();
+                    maCnss.displayPatientDossiers();
                 }break;
                 default:{
                     System.out.println("It seems like you are tired ;)");

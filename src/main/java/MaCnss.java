@@ -30,6 +30,17 @@ public class MaCnss {
         this.person = person;
     }
 
+    public void displayPatientDossiers(){
+        ArrayList<Dossier> dossiers = new ArrayList<>();
+        if (this.person == null) {
+            System.out.println("Ops something went wrong please try again");
+            return;
+        }
+        dossiers = DossierService.selectDossiers(this.person.getId());
+        for (Dossier dossier: dossiers) {
+            System.out.println(dossier);
+        }
+    }
     public void displayDossiers(){
         ArrayList<Dossier> dossiers = DossierService.selectDossiers("waiting");
 

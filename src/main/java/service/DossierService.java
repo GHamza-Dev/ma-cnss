@@ -49,6 +49,28 @@ public class DossierService extends DBService {
 
         return null;
     }
+    public static ArrayList<Dossier> selectDossiers(int patientId){
+        ArrayList<Dossier> dossiers = new ArrayList<>();
+        try {
+            PreparedStatement statement = dbConnection.getConnection().prepareStatement("SELECT dossier.id as dossier_id, dossier.status, dossier.repayment, patient.* FROM dossier JOIN patient ON dossier.patient_id = patient.id where patient_id = ?");
+            statement.setInt(1,patientId);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                Dossier dossier = new Dossier();
+                dossier.setRepayment(rs.getFloat("repayment"));
+                dossier.setStatus(rs.getString("status"));
+                dossier.setId(rs.getInt("dossier_id"));
+                dossier.setPatient(new Patient(rs.getInt("id"),rs.getString("username"),rs.getString("email"),"####",rs.getInt("mat")));
+                dossiers.add(dossier);
+            }
+            return dossiers;
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return null;
+    }
     public static int insertDossier(Dossier dossier){
         int patient_id = dossier.getPatient().getId();
         int speciality_id = dossier.getSpeciality().getId();
