@@ -17,7 +17,7 @@ public class Prompt {
     }
     public static String promptForSpecialitySearch(){
         System.out.print("Enter speciality name: ");
-        return scanner.nextLine();
+        return scanner.next();
     }
     public static int promptForPatientSearch() {
         System.out.print("Enter the client's registration number: ");
